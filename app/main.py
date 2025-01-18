@@ -1,6 +1,3 @@
-from typing import AnyStr
-
-
 class Car:
     def __init__(self, comfort_class: int, clean_mark: int, brand: str)\
             -> None:
@@ -19,7 +16,7 @@ class CarWashStation:
         self.count_of_ratings = count_of_ratings
 
     def serve_cars(self, cars: list[Car]) -> float:
-        if not [Car]:
+        if not cars:
             return 0
         income: float = 0
         for car in cars:
@@ -28,11 +25,11 @@ class CarWashStation:
                 car.clean_mark = self.wash_single_car(car)
         return income
 
-    def calculate_washing_price(self, car: AnyStr) -> float:
+    def calculate_washing_price(self, car: Car) -> float:
         return round(car.comfort_class * (self.clean_power - car.clean_mark)
                      * self.average_rating / self.distance_from_city_center, 1)
 
-    def wash_single_car(self, car: AnyStr) -> int:
+    def wash_single_car(self, car: Car) -> int:
         if self.clean_power > car.clean_mark:
             car.clean_mark = self.clean_power
         return car.clean_mark
